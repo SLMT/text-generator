@@ -11,3 +11,11 @@ With Rust installed, runs:
 ```
 
 Then, you will see the output files in `/out`.
+
+## What Did It Just Do?
+
+It generates the text files using the following process:
+
+1. Randomly select 25 words from `words.txt` to form a word set.
+2. Create an output directory `/out`
+3. Generate each output file in `/out` by randomly selecting 1000 words from the word set (could be repeated).

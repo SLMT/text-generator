@@ -1,6 +1,6 @@
 use std::{
     collections::HashSet,
-    fs::{File, OpenOptions},
+    fs::{self, File, OpenOptions},
     io::{BufRead, BufReader, BufWriter, Result, Write},
 };
 
@@ -9,6 +9,7 @@ use rand::{thread_rng, Rng};
 const WORD_FILE: &str = "words.txt";
 const WORD_SET_SIZE: usize = 25;
 const GEN_WORD_COUNT: usize = 1000;
+const OUTPUT_DIR: &str = "out";
 const OUTPUT_FILE_PREFIX: &str = "out/gen_text_";
 const GEN_FILE_COUNT: usize = 10;
 
@@ -24,6 +25,9 @@ fn main() -> Result<()> {
     println!();
 
     let word_list: Vec<String> = word_set.into_iter().collect();
+
+    // Ensure the output directory
+    fs::create_dir_all(OUTPUT_DIR)?;
 
     for idx in 0..GEN_FILE_COUNT {
         let text = generate_random_text(&word_list, GEN_WORD_COUNT);
